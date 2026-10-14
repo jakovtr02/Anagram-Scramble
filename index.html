@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2859f5">
+  <title>Anagram Scramble</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Anagram Scramble home">Anagram<span>Scramble</span><small>THE DAILY WORD CHALLENGE</small></a>
+    <a class="header-link" href="#how-to">How to play</a>
+  </header>
+  <nav class="blue-bar" aria-label="Game modes">
+    <div class="nav-inner">
+      <button type="button" data-mode="timebank" aria-pressed="true">Time Bank <small>Beat the clock</small></button>
+      <button type="button" data-mode="speed" aria-pressed="false">Speed Mode <small>Multipliers &amp; power-ups</small></button>
+    </div>
+  </nav>
+  <main class="card">
+    <section id="start-screen" class="screen">
+      <div class="badge">60 SECONDS · ENDLESS POSSIBILITIES</div>
+      <h1>Anagram <span>Scramble</span></h1>
+      <p class="intro">Unscramble the letters. Keep the clock alive.</p>
+      <fieldset class="mode-picker">
+        <legend>Choose your mode</legend>
+        <label class="mode-option"><input type="radio" name="mode" value="timebank" checked><span><strong>Time Bank</strong><small>60 seconds. Earn time for correct answers.</small></span></label>
+        <label class="mode-option"><input type="radio" name="mode" value="speed"><span><strong>Speed Mode</strong><small>Speed multipliers, streaks, and power-ups.</small></span></label>
+      </fieldset>
+      <p id="mode-description" class="mode-description">Score 10 points per letter. No multipliers or power-ups.</p>
+      <ul id="how-to" class="instructions">
+        <li>Type your answer or click the scrambled letter tiles.</li>
+        <li>Press Enter or Submit. Correct answers earn 5 seconds;
+          wrong answers cost 3 seconds.</li>
+        <li>In Speed Mode, solve quickly and build streaks to multiply your score.</li>
+        <li>In Speed Mode, earn a power-up every 3 consecutive correct answers.
+          Use buttons or shortcuts <strong>1–4</strong>.</li>
+      </ul>
+      <button id="start-button" class="primary">Start Game</button>
+    </section>
+
+    <section id="game-screen" class="screen" hidden>
+      <header class="game-header">
+        <h2>Anagram Scramble<small id="active-mode">Time Bank</small></h2>
+        <div id="timer-wrap" class="timer-wrap">
+          <span class="stat-label">TIME BANK</span>
+          <strong id="timer" role="timer">60.0s</strong>
+          <span id="freeze-status"></span>
+          <div id="time-effects" aria-hidden="true"></div>
+        </div>
+      </header>
+      <div class="stats">
+        <div><span class="stat-label">SCORE</span><strong id="score">0</strong></div>
+        <div><span class="stat-label">STREAK</span><strong id="streak">0</strong></div>
+        <div><span class="stat-label">NEXT SOLVE MULTIPLIER</span><strong id="multiplier">3×</strong></div>
+      </div>
+      <div class="round-heading">
+        <span id="round-label">Word 1</span>
+        <span id="difficulty-label">4–5 letters</span>
+      </div>
+      <div id="tiles" class="tiles" aria-label="Scrambled letters"></div>
+      <form id="answer-form" autocomplete="off">
+        <label for="answer">Your answer</label>
+        <div class="answer-row">
+          <input id="answer" type="text" placeholder="ENTER LETTERS"
+                 autocapitalize="none" spellcheck="false" aria-describedby="feedback">
+          </div><button type="submit" class="primary submit-button">Submit Answer</button>
+      </form>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div class="power-ups" aria-label="Power-ups">
+        <button type="button" data-power="reveal">
+          <span class="power-icon" aria-hidden="true">💡</span><span>Reveal a Letter</span>
+          <span class="power-meta">1 · <b data-count="reveal">1</b> left</span>
+        </button>
+        <button type="button" data-power="freeze">
+          <span class="power-icon" aria-hidden="true">❄️</span><span>Freeze Time</span>
+          <span class="power-meta">2 · <b data-count="freeze">1</b> left</span>
+        </button>
+        <button type="button" data-power="shuffle">
+          <span class="power-icon" aria-hidden="true">🔀</span><span>Re-shuffle</span>
+          <span class="power-meta">3 · <b data-count="shuffle">1</b> left</span>
+        </button>
+        <button type="button" data-power="skip">
+          <span class="power-icon" aria-hidden="true">⏭️</span><span>Skip</span>
+          <span class="power-meta">4 · <b data-count="skip">1</b> left</span>
+        </button>
+      </div>
+      <p id="power-note" class="small-note">Reveal reduces this word’s base score by 25% per use.</p>
+    </section>
+    <section id="over-screen" class="screen" hidden>
+      <div class="badge">Time’s up!</div>
+      <h1>Nice <span>scrambling.</span></h1>
+      <p id="record-message" class="intro"></p>
+      <dl class="results">
+        <div><dt>Final score</dt><dd id="final-score"></dd></div>
+        <div><dt>Words solved</dt><dd id="final-solved"></dd></div>
+        <div><dt>Best streak</dt><dd id="final-streak"></dd></div>
+        <div><dt>Fastest solve</dt><dd id="final-fastest"></dd></div>
+        <div><dt>Personal high score</dt><dd id="high-score"></dd></div>
+      </dl>
+      <button id="again-button" class="primary">Play Again</button>
+      <button id="change-mode-button" class="secondary">Change Mode</button>
+    </section>
+  </main>
+  <footer class="site-footer">A little wordplay goes a long way. <span>Solve fast. Build your streak. Beat your best.</span></footer>
+</body>
+</html>
